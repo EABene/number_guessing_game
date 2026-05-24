@@ -9,8 +9,8 @@ Please select the difficulty level:
 1. Easy (10 chances)
 2. Medium (5 chances)
 3. Hard (3 chances)\n""")
-    
 
+    
 # Random number determination
 
 correct_number = random.randint(1, 100)
@@ -41,33 +41,31 @@ chances = {'1': 10, '2': 5, '3': 3}
 attempts = 0
 guess = ""
 
-while correct_number != guess:
-    attempts += 1
-    if attempts > chances[difficulty_level]:
-        print(f"You have used up your attempts ({chances[difficulty_level]}).\nCorrect number was: {correct_number}\nBetter luck next time :)")
-        break
+while True:
+
+    # Input Validation ---
     try: 
         guess = int(input("Enter your guess: "))
     except ValueError:
-        print("Guess is not a number.")
+        print("Guess is not a number.\n")
         continue
 
     if not 1 <= guess <= 100:
-        print("Guess is not in the given range.")
+        print("Guess is not in the given range.\n")
         continue
-
+    # End of input validation ---
 
     if guess > correct_number:
         print(f"Incorrect! The number is less than {guess}.\n")
     elif guess < correct_number:
         print(f"Incorrect! The number is greater than {guess}.\n")
     else:
+        attempts += 1
         print(f"Congratulations! You guessed the correct number in {attempts} attempts.")
         break
 
-
-
-
-
-
+    attempts += 1
+    if attempts >= chances[difficulty_level]:
+        print(f"You have used up your attempts ({chances[difficulty_level]}).\nCorrect number was: {correct_number}\nBetter luck next time :)")
+        break
 
