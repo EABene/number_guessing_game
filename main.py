@@ -3,7 +3,7 @@ import random
 def greet():
     print("""Welcome to the Number Guessing Game!
 I'm thinking of a number between 1 and 100.
-You have 5 chances to guess the correct number.
+You have limited chances to guess the correct number.
 Please select the difficulty level:
           
 1. Easy (10 chances)
@@ -13,7 +13,7 @@ Please select the difficulty level:
 
 # Random number determination
 
-correct_number = random.choice(range(1,100))
+correct_number = random.randint(1, 100)
 
 # Actual program start
 
@@ -34,6 +34,7 @@ difficulties = {
 
 print(f"\nGreat! You have selected the {difficulties[difficulty_level]} difficulty level.\nLet's start the game!\n")
 
+chances = {'1': 10, '2': 5, '3': 3}
 
 # Guessing starts here
 
@@ -41,6 +42,10 @@ attempts = 0
 guess = ""
 
 while correct_number != guess:
+    attempts += 1
+    if attempts > chances[difficulty_level]:
+        print(f"You have used up your attempts ({chances[difficulty_level]}).\nCorrect number was: {correct_number}\nBetter luck next time :)")
+        break
     try: 
         guess = int(input("Enter your guess: "))
     except ValueError:
@@ -54,14 +59,14 @@ while correct_number != guess:
 
     if guess > correct_number:
         print(f"Incorrect! The number is less than {guess}.\n")
-        attempts += 1
     elif guess < correct_number:
         print(f"Incorrect! The number is greater than {guess}.\n")
-        attempts += 1
+    else:
+        print(f"Congratulations! You guessed the correct number in {attempts} attempts.")
+        break
 
-attempts += 1
 
-print(f"Congratulations! You guessed the correct number in {attempts} attempts.")
+
 
 
 
