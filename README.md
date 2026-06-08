@@ -1,5 +1,5 @@
 # number_guessing_game
-A short and simple number guessing game
+A short and simple number guessing game.
 
 Reference:
 https://roadmap.sh/projects/number-guessing-game
